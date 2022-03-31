@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/css/productEdit.css">
+<link rel="stylesheet" href="/css/productDetail.css">
+<%- include("./partials/head")%>
+
+
+  <body>
+    <!--header-->
+    <%- include("./partials/header")%>
+      <main class="main-edit">
+        <p class="create-product">
+          <a href="/products/edit"><i class="fas fa-edit"></i></i>Editar Producto</a>
+        </p>
+        <section class="form-create">
+          <form action="/products/create" method="post" enctype="multipart/form-data">
+            <p class=" title-edit"> Crear un nuevo producto</p>
+            <label for="">Nombre del producto</label>
+            <input class="input-edit" type="text" name="name"
+              placeholder="  Por ej.: Bata de Baño Smoking Piqué...">
+            <%= locals.errorsMessages ? errorsMessages.usuario.msg: " " %>
+
+
+              <br>
+
+              </select>
+              <br>
+              <label for="">Marcas</label>
+              <select class="product-seizures-edit" name="idBrand">
+                <% for (let k=0; k<brands.length; k++){ %>
+                  <option value="<%=brands[k].idBrand%>">
+                    <%= brands[k].name %>
+                  </option>
+                  <% } %>
+              </select>
+
+              <br>
+              <label for="">Descripción</label>
+              <input class="input-edit" type="text" name="description"
+                placeholder="  Por ej.: Bata de baño para adulto...">
+              <%= locals.errorsMessages ? errorsMessages.description-create.msg: " " %>
+                <br>
+
+                <label for="">Stock</label>
+                <input class="input-edit" type="text" name="stock">
+              
+                <br>
+                <label for="">Características de la tela</label>
+                <br>
+                <p class="caract-tela-create">
+                  <textarea type="text" rows="3" name="property-create"
+                    placeholder="Por ej.: Las telas con mezclas de algodón y poliéster son conocidas por su durabilidad. El algodón es de fibra natural, por lo que le brinda propiedades como respirabilidad y suavidad."
+                    maxlength="450"></textarea>
+                </p>
+                <br>
+                <label for="">Imágenes</label>
+                <input class="input-edit" type="file" name="imageCreate" accept="image/png, .jpeg, .jpg, image/gif">
+                <br>
+                <label for="">Categoría</label>
+                <select class="product-list-edit" name="categories" multiple>
+                  <% for (let i=0; i<categories.length; i++){ %>
+
+                    <option value="<%=categories[i].idCategory%>">
+                      <%= categories[i].typeOfCategory %>
+                    </option>
+
+                    <% } %>
+
+
+                </select>
+                <br>
+                <label for="">Tamaños</label>
+                <select class="product-seizures-edit" name="sizes" multiple>
+                  <% for (let j=0; j<sizes.length; j++){ %>
+                    <option value="<%=sizes[j].idSize%>">
+                      <%= sizes[j].typeOfSize %>
+                    </option>
+                    <% } %>
+                </select>
+                <br>
+                <!--selector de color- radio-script-->
+                <div class="color-selection">
+                  <p class="color-title">Colores</p>
+                  <br>
+
+                  <ul class="color-list-PD">
+
+                    <% for (let h=0; h<colors.length; h++){ %>
+
+
+                      <li>
+                        <label>
+                          <%= colors[h].color %>
+                        </label>
+                        <p><input type="checkbox" name="colors" class="checkbox-color-PD"
+                            value=" <%= colors[h].idColor %>" id="checkbox-colorA-PD"></p>
+                      </li>
+                      <% } %>
+
+                  </ul>
+
+
+                </div>
+                <label for="price-edit" class="priceCreate">Precio</label>
+                <input class="input-edit" type="number" name="priceCreate" placeholder=" $0 ">
+                <br>
+                <button type="submit" class="button-edit">Publicar</button>
+          </form>
+        </section>
+
+      </main>
+      <!-- footer -->
+      <%- include("./partials/footer")%>
+
+  </body>
+
+</html>
